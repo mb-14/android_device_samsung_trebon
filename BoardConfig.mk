@@ -1,0 +1,40 @@
+USE_CAMERA_STUB := true
+
+# inherit from the proprietary version
+-include vendor/samsung/trebon/BoardConfigVendor.mk
+
+TARGET_NO_BOOTLOADER := true
+TARGET_BOARD_PLATFORM :=  msm7k
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_BOOTLOADER_BOARD_NAME := GT-S7500
+TARGET_ARCH_VARIANT := armv7-a-neon
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
+BOARD_KERNEL_BASE := 0x00200000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_NAND_PAGE_SIZE := 4096 -s 128
+
+# fix this up by examining /proc/mtd on a running device
+BOARD_BOOTIMAGE_PARTITION_SIZE :=12582912
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 12582912
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 524288000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 979369984
+BOARD_FLASH_BLOCK_SIZE := 4096
+
+TARGET_PREBUILT_KERNEL := device/samsung/trebon/kernel
+
+# Vold
+BOARD_VOLD_MAX_PARTITIONS := 12
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+# Recovery
+TARGET_RECOVERY_INITRC := device/samsung/trebon/recovery/recovery.rc
+BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk0p23
+BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1p1
+BOARD_HAS_NO_MISC_PARTITON := true
+BOARD_HAS_SDCARD_INTERNAL := true
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_USES_MMCUTILS := true
+BOARD_RECOVERY_HANDLES_MOUNT := true
+BOARD_HAS_DOWNLOAD_MODE := true
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/trebon/recovery/graphics.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/samsung/trebon/recovery/recovery_ui.c
+BOARD_LDPI_RECOVERY := true
