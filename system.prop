@@ -1,3 +1,119 @@
 #
 # system.prop for trebon
 #
+rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/smd0
+#persist.rild.nitz_plmn=
+#persist.rild.nitz_long_ons_0=
+#persist.rild.nitz_long_ons_1=
+#persist.rild.nitz_long_ons_2=
+#persist.rild.nitz_long_ons_3=
+#persist.rild.nitz_short_ons_0=
+#persist.rild.nitz_short_ons_1=
+#persist.rild.nitz_short_ons_2=
+#persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
+debug.sf.hw=1
+debug.composition.7x27A.type=mdp
+debug.composition.7x25A.type=mdp
+dalvik.vm.heapsize=64m
+
+# Mount the internal SD card, too
+ro.additionalmounts=/mnt/emmc 
+ro.vold.switchablepair=/mnt/sdcard,/mnt/emmc 
+
+
+#
+# system props for the MM modules
+#
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=false
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+
+#
+# system prop for opengles version
+#
+ro.opengles.version=131072
+
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+persist.data.ds_fmc_app.mode=0
+
+#
+# system props for IMS module
+#
+persist.ims.regmanager.mode=0
+
+#
+# system prop for requesting Master role in incoming Bluetooth connection.
+#
+ro.bluetooth.request.master=false
+
+#
+# system prop for Bluetooth FTP profile
+#
+ro.qualcomm.bluetooth.ftp=false
+
+#
+# system prop for Bluetooth SAP profile
+#
+ro.qualcomm.bluetooth.sap=false
+
+#
+# system prop for Bluetooth Auto connect for remote initated connections
+#
+ro.bluetooth.remote.autoconnect=true
+
+#
+#system property for Bluetooth discoverability timeout in seconds
+#0: Always discoverable
+debug.bt.discoverable_time=-1
+
+#
+# System prop to enable/disable OMH. Enabled by default
+#
+persist.omh.enabled=1
+
+#System prop to enable ehrpd capability
+ro.config.ehrpd=true
+
+# System property for cabl
+ro.qualcomm.cabl=1
+
+#
+#System prop to determine availability of
+#analog fm path
+#
+ro.fm.analogpath.supported=true
+
+#
+#System property for FM transmitter
+#
+ro.fm.transmitter=false
+
+#
+#System property for single instance recording
+#
+ro.fm.mulinst.recording.support=false
+
+#
+# User Agent Profile for RTSP Streaming
+#
+net.streaming.rtsp.uaprof=http://wap.samsungmobile.com/uaprof/GT-S7500.xml
+
+#
+#System property for msm
+#
+ro.hw_plat=7x27a
+
+#
+#System property for qemu
+#
+ro.kernel.qemu=0

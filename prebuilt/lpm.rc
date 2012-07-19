@@ -1,0 +1,55 @@
+on early-init
+    start ueventd
+
+on init
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+    export LD_LIBRARY_PATH /vendor/lib:/system/lib
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export ANDROID_CACHE /cache
+    export SECONDARY_STORAGE /mnt/emmc
+    export EXTERNAL_STORAGE /mnt/sdcard
+
+    symlink /system/etc /etc
+    mkdir /mnt 0775 root system
+
+    mkdir /system
+    mkdir /tmp
+    mkdir /mnt 0775 root root
+
+
+on boot
+# CPU Frequency Governor
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+
+    ifup lo
+    hostname localhost
+    domainname localdomain
+
+    class_start default
+
+service ueventd /sbin/ueventd
+    class core
+    critical
+
+service console /system/bin/sh
+    class core
+    console
+
+service adbd /sbin/adbd
+    disabled
+
+service charger /charger
+    class default
+    user root
+
+# adbd is controlled by the persist.service.adb.enable system property
+service adbd /sbin/adbd
+  user root
+
+on property:persist.service.adb.enable=1
+  start adbd
+
+on property:persist.service.adb.enable=0
+  stop adbd
+
